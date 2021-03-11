@@ -1,0 +1,13 @@
+# Issue 1
+---------------------------
+
+Both public and private subnet network ACL rules allow all traffic on all ports from all ports.
+
+Network ACL rules should be used to minimise the available network connectivity to reduce the traffic that can be sent to and from the subnet. This will reduce the ability for malicious actions that could be performed against the infrastructure by an attacker, and will keep the private subnet (and contents) private.
+
+# Issue 2
+----------------------------
+
+S3 buckets, including the bucket for VPC flow logs, have no server-side encryption enabled / files were uploaded without encryption and all the buckets have block public access disabled.
+
+Not encrypting the contents of the s3 buckets could allow people who shouldn't have access to the content to view the content within the buckets. The vpc-flow-logs may contain compromising information that could directly or indirectly cause further security compromises if the rest of the infrastructure is not set up correctly.
